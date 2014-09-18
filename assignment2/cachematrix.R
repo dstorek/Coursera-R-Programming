@@ -5,6 +5,7 @@
 ## Creates a "matrix" object that can cache its inverse. 
 makeCacheMatrix <- function(x = matrix()) {
     
+    # Assigns NULL to inverse
     m <- NULL
     
     # Set method
@@ -13,12 +14,9 @@ makeCacheMatrix <- function(x = matrix()) {
         m <<- NULL
     }
     
-    # Get method
-    get <- function() {
-        # returns the matrix
-        x
-    }
-    
+    # Get method returns the matrix
+    get <- function() x
+        
     # Sets the inverse matrix 
     setInverseMatrix <- function(local_variable) m <<- local_variable
     
@@ -47,8 +45,8 @@ cacheSolve <- function(x, ...) {
     # Retrieves the matrix
     data <- x$get()
     
-    # solve(c) function gives the correct inverse. You need to use %*%  operator to invoke matrix multiplication in R.
-    m <- solve(data) %*% data
+    # solve(c) function gives the correct inverse.
+    m <- solve(data, ...)
     
     x$setInverseMatrix(m)
     
